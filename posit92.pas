@@ -35,7 +35,7 @@ implementation
 
 uses
   Conv, Logger,
-  ImgRef, VGA;
+  ImgRef, Strings, VGA;
 
 const
   displayScale = 2;
@@ -147,7 +147,12 @@ end;
 procedure TPosit92.loadBMFont(const filename: string; var font: TBMFont; var fontGlyphs: array of TBMFontGlyph);
 var
   f: text;
-  line: string;
+  txtLine: string;
+  a: word;
+  pairs: array[0..9] of string;
+  pair: array[0..1] of string;
+  k, v: string;
+  glyphCount: word;
 begin
   assign(f, filename);
   {$I-} reset(f); {$I+}
@@ -157,8 +162,27 @@ begin
     exit
   end;
 
+  while not eof(f) do begin
+    readln(f, txtLine);
+
+    if startsWith(txtLine, 'info') then begin
+      split(txtLine, ' ', pairs);
+
+      for a:=0 to high(pairs) do begin
+        split(pairs[a], '=', pair);
+        k := pair[0]; v := pair[1];
+        if k = 'face' then
+          font.face := replaceAll(v, '"', '');
+      end;
+
+      writeLog('font.face:' + font.face)
+    end;
+
   { TODO: Read the header }
   { TODO: Load the glyphs }
+
+  end;
+
   { writeLog('filename: ' + filename);
   writeLog('low: ' + i32str(low(fontGlyphs)));
   writeLog('high: ' + i32str(high(fontGlyphs))); }
