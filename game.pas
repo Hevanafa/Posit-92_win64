@@ -11,7 +11,7 @@ const
   FrameTime = 16;
 
 var
-  imgEmpty: longint;
+  imgGasolineMaid: longint;
 
 type
   TGame = object(TPosit92)
@@ -28,6 +28,7 @@ type
 procedure TGame.loadAssets;
 begin
   { Load more assets here }
+  imgGasolineMaid := loadImage('assets\images\gasoline_maid_100px.png');
 end;
 
 procedure TGame.init;
@@ -45,7 +46,7 @@ procedure TGame.afterInit;
 begin
   loadAssets;
 
-  imgEmpty := newImage(32, 32);
+  { imgEmpty := newImage(32, 32); }
   { Init your game state here }
 end;
 
@@ -71,6 +72,7 @@ begin
   cls($FF6495ED);
 
   { Your render logic here }
+  spr(imgGasolineMaid, 10, 10);
 
   flush
 end;
