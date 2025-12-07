@@ -143,11 +143,28 @@ begin
   loadImage := imgHandle
 end;
 
+{ 32 to 126: 0 to 94 }
 procedure TPosit92.loadBMFont(const filename: string; var font: TBMFont; var fontGlyphs: array of TBMFontGlyph);
+var
+  f: text;
+  line: string;
 begin
-  writeLog('filename: ' + filename);
+  assign(f, filename);
+  {$I-} reset(f); {$I+}
+
+  if IOResult <> 0 then begin
+    writeLog('Failed to open BMFont file: ' + filename);
+    exit
+  end;
+
+  { TODO: Read the header }
+  { TODO: Load the glyphs }
+  { writeLog('filename: ' + filename);
   writeLog('low: ' + i32str(low(fontGlyphs)));
-  writeLog('high: ' + i32str(high(fontGlyphs)));
+  writeLog('high: ' + i32str(high(fontGlyphs))); }
+
+  close(f);
+  { writeLog('Loaded ' + i32str(count) + ' glyphs') }
 end;
 
 procedure TPosit92.flush;
