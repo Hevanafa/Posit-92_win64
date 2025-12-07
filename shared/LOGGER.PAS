@@ -6,9 +6,6 @@ unit Logger;
 
 interface
 
-procedure initLogger;
-procedure closeLogger;
-
 {$ifdef WASM}
 { Must be registered in importObject }
 procedure writeLogI32(const value: longint); external 'env' name 'writeLogI32';
@@ -17,6 +14,10 @@ procedure writeLogF32(const value: double); external 'env' name 'writeLogF32';
 function getLogBuffer: pointer; public name 'getLogBuffer';
 { Forwards logBuffer to JS }
 procedure flushLog; external 'env' name 'flushLog';
+{$endif}
+{$ifdef WIN64}
+procedure initLogger;
+procedure closeLogger;
 {$endif}
 
 procedure writeLog(const msg: string);
@@ -89,8 +90,9 @@ begin
   flushLog
 {$endif}
 {$ifdef WIN64}
+  writeln(msg);
   if not logOpened then exit;
-  writeLn(logFile, msg);
+  writeln(logFile, msg);
   flush(logFile)
 {$endif}
 end;

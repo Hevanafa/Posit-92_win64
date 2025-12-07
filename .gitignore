@@ -7,3 +7,4 @@ UNITS/*.a
 
 # Runtime stuff
 *.log
+LOG.TXT
