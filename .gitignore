@@ -8,3 +8,6 @@ UNITS/*.a
 # Runtime stuff
 *.log
 LOG.TXT
+
+# Misc
+thumbs.db
