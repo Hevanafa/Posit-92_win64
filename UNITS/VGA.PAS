@@ -50,10 +50,10 @@ var
 
 procedure initBuffer;
 begin
-  writeLog('Attempting to call initBuffer');
+  writeln('Attempting to call initBuffer');
 
   if not bufferInitialised then begin
-    surface := PByteArray(WasmGetMem(bufferSize));
+    surface := PByteArray(getmem(bufferSize));
     fillchar(surface^, bufferSize, 0);
     bufferInitialised := true
   end;

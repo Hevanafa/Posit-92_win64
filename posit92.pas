@@ -59,6 +59,8 @@ procedure TPosit92.flush;
 begin
   SDL_SetRenderDrawColor(renderer, $64, $95, $ED, $FF);
 
+  { TODO: Handle copy from VGA buffer }
+
   SDL_RenderClear(renderer);
   SDL_RenderPresent(renderer)
 end;

@@ -3,7 +3,7 @@
 {$Mode TP}
 
 uses
-  Posit92;
+  Posit92, VGA;
 
 type
   TGame = object(TPosit92)
@@ -27,10 +27,11 @@ end;
 procedure TGame.init;
 begin
   inherited init; { works the same as super.init() in JS }
-  
-  setTitle('Posit-92 with SDL2')
 
-  { initBuffer; }
+  setTitle('Posit-92 with SDL2');
+
+  initBuffer;
+  { initDeltaTime }
 end;
 
 procedure TGame.afterInit;
@@ -55,6 +56,7 @@ end;
 
 procedure TGame.draw;
 begin
+  cls($FF6495ED);
 
   flush
 end;

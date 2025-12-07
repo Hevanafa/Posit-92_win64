@@ -4,3 +4,6 @@
 *.ppu
 dist/
 UNITS/*.a
+
+# Runtime stuff
+*.log
