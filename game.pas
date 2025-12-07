@@ -56,7 +56,10 @@ end;
 
 procedure TGame.draw;
 begin
-  cls($FF6495ED);
+  { cls($FF6495ED); }
+  { cls($FFFF5555); } { test mode 13h red }
+  { cls($FF55FF55); } { test mode 13h green } { output: magenta }
+  cls($FF5555FF); { test mode 13h blue }
 
   flush
 end;
