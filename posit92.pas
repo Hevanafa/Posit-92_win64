@@ -5,7 +5,8 @@ unit Posit92;
 interface
 
 uses
-  SDL2Wrapper, Keyboard;
+  SDL2Wrapper,
+  BMFont, Keyboard;
 
 type
   TPosit92 = object
@@ -33,7 +34,8 @@ type
 implementation
 
 uses
-  Conv, Logger, ImgRef, VGA;
+  Conv, Logger,
+  ImgRef, VGA;
 
 const
   displayScale = 2;

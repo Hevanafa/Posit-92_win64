@@ -4,7 +4,7 @@
 
 uses
   SDL2Wrapper, Posit92,
-  Keyboard, Logger,
+  BMFont, Keyboard, Logger,
   ImgRef, ImgRefFast,
   VGA;
 
@@ -16,7 +16,7 @@ var
   imgGasolineMaid: longint;
 
   defaultFont: TBMFont;
-  defaultFontGlyphs: array [32..126] TBMFontGlyph;
+  defaultFontGlyphs: array [32..126] of TBMFontGlyph;
 
 type
   TGame = object(TPosit92)
@@ -34,6 +34,8 @@ procedure TGame.loadAssets;
 begin
   { Load more assets here }
   imgGasolineMaid := loadImage('assets\images\gasoline_maid_100px.png');
+
+  loadBMFont('assets\fonts\nokia_cellphone_fc_8.txt', defaultFont, defaultFontGlyphs)
 end;
 
 procedure TGame.init;
