@@ -69,6 +69,24 @@ begin
   while SDL_PollEvent(@event) <> 0 do begin
     case event.eventType of 
       SDL_QUIT_: done := true;
+
+      SDL_KEYDOWN: begin
+        keyEvent := PSDL_KeyboardEvent(@event);
+        if keyEvent^.repeat_ = 0 then begin
+          dosScancode := SDLToDOSScancode(keyEvent^.keysym.scancode);
+
+          if dosScancode <> 0 then
+            keyState[dosScancode] := true;
+        end;
+      end;
+
+      SDL_KEYUP: begin
+        keyEvent := PSDL_KeyboardEvent(@event);
+        dosScancode := SDLToDOSScancode(keyEvent^.keysym.scancode);
+
+        if dosScancode <> 0 then
+          keyState[dosScancode] := false;
+      end;
     end;
   end;
 end;

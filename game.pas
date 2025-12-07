@@ -58,6 +58,8 @@ end;
 
 procedure TGame.update;
 begin
+  inherited update;
+  
 
 end;
 
