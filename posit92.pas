@@ -5,12 +5,22 @@ unit Posit92;
 interface
 
 type
-  TPosit92 = record
-
+  TPosit92 = object
+  public
+    procedure init;
+    procedure afterInit;
+    procedure cleanup;
+    procedure update;
+    procedure draw;
+  private
   end;
 
 
 implementation
 
+procedure TPosit92.init;
+begin
+  writeln('init from TPosit92!')
+end;
 
 end.

@@ -1,8 +1,18 @@
 { Entry point }
 
-{$Mode ObjFPC}
+uses
+  Posit92;
+
+{$Mode TP}
+
+type
+  TGame = object(TPosit92)
+  end;
+
+var
+  game: TGame;
 
 begin
-  writeln('Hello from Posit92!');
+  game.init
 end.
 
