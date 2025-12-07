@@ -4,7 +4,7 @@ unit Posit92;
 
 interface
 
-uses SDL2Wrapper;
+uses SDL2Wrapper, Keyboard;
 
 type
   TPosit92 = object
@@ -60,7 +60,7 @@ var
   event: TSDL_Event;
 begin
   while SDL_PollEvent(@event) <> 0 do begin
-    if event.eventType = SDL_QUIT then done := true;
+    if event.eventType = SDL_QUIT_ then done := true;
   end;
 end;
 

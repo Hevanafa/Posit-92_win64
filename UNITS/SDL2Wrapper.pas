@@ -13,7 +13,7 @@ const
   SDL_PIXELFORMAT_BGRA32 = $16762004;
   SDL_TEXTUREACCESS_STREAMING = 1;
 
-  SDL_QUIT = $100;
+  SDL_QUIT_ = $100;
 
 type
   PSDL_Window = pointer;
