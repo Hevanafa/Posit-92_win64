@@ -47,7 +47,7 @@ procedure TGame.afterInit;
 begin
   loadAssets;
 
-  panicHalt('Test panic call');
+  { panicHalt('Test panic call'); }
 
   { Init your game state here }
 end;

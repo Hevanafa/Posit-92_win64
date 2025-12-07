@@ -20,29 +20,31 @@ procedure jsPanicHalt(const textPtr: PByte; const textLen: integer); external 'e
 uses Logger;
 {$endif}
 
-procedure panicHalt(const msg: string);
+
 {$ifdef WASM}
+procedure panicHalt(const msg: string);
 var
   a: word;
   msgBuffer: array[0..255] of byte;
-{$endif}
-
 begin
-
-{$ifdef WASM}
   for a:=1 to length(msg) do
     msgBuffer[a-1] := ord(msg[a]);
 
   jsPanicHalt(@msgBuffer, length(msg));
+end;
 {$endif}
+
 {$ifdef WIN64}
+procedure panicHalt(const msg: string);
+begin
   writeLog('PANIC: ' + msg);
   halt(1)
-{$endif}
 end;
+{$endif}
 
-procedure panicDisplay(const msg: string);
+
 {$ifdef WASM}
+procedure panicDisplay(const msg: string);
 var
   a: word;
   msgBuffer: array[0..255] of byte;
@@ -56,7 +58,7 @@ begin
 
   jsPanicHalt(@msgBuffer, length(msg));
   { halt(1) } { This triggers _haltproc }
-{$endif}
 end;
+{$endif}
 
 end.
