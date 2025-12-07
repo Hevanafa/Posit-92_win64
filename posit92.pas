@@ -14,6 +14,7 @@ type
     procedure cleanup;
 
     function isKeyDown(const scancode: integer): boolean;
+    function loadImage(const filename: string): longint;
 
     procedure update;
     procedure flush;
@@ -105,6 +106,35 @@ function TPosit92.isKeyDown(const scancode: integer): boolean;
 begin
   isKeyDown := keyState[scancode]
 end;
+
+function TPosit92.loadImage(const filename: string): longint;
+var
+  surface: PSDL_Surface;
+  imgHandle: longint;
+  image: PImageRef;
+  src, dest: PByte;
+  a: longint;
+begin
+  surface := IMG_Load(@filename[1]);
+  if surface = nil then begin
+    writeLog('loadImage: Failed to load ' + filename);
+    loadImage := -1;
+    exit
+  end;
+
+  imgHandle := newImage(surface^.w, surface^.h);
+  image := getImagePtr(imgHandle);
+
+  src := PByte(surface^.pixels);
+  dest := image^.dataPtr;
+
+  for a:=0 to (surface^.w * surface^.h * 4) - 1 do
+    dest[a] := src[a];
+
+  SDL_FreeSurface(surface);
+  loadImage := imgHandle
+end;
+
 
 procedure TPosit92.flush;
 begin
