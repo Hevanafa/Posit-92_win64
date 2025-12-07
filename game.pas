@@ -4,7 +4,9 @@
 
 uses
   SDL2Wrapper, Posit92,
-  Keyboard, Logger, ImgRef, Panic, VGA;
+  Keyboard, Logger,
+  ImgRef, ImgRefFast,
+  VGA;
 
 const
   TargetFPS = 60;

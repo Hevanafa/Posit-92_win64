@@ -30,7 +30,7 @@ type
 
 implementation
 
-uses VGA;
+uses Logger, ImgRef, VGA;
 
 procedure TPosit92.init;
 begin
