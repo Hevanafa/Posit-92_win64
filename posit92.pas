@@ -21,7 +21,7 @@ type
     window: PSDL_Window;
     renderer: PSDL_Renderer;
     vgaTexture: PSDL_Texture;
-    keyState: array[0..511] of boolean;
+    keyState: array[0..127] of boolean;  { use DOS scancode }
   end;
 
 
@@ -77,7 +77,7 @@ end;
 
 function TPosit92.isKeyDown(const scancode: integer): boolean;
 begin
-
+  isKeyDown := keyState[scancode]
 end;
 
 

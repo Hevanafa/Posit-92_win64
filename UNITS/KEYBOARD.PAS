@@ -5,8 +5,8 @@ unit Keyboard;
 interface
 
 const
-  SC_ESC = 1;
-  SC_1 = 2;
+  SC_ESC = $01;
+  SC_1 = $02;
 
 
 implementation
