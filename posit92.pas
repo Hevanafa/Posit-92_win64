@@ -152,6 +152,7 @@ var
   pairs: array[0..9] of string;
   pair: array[0..1] of string;
   k, v: string;
+  tempGlyph: TBMFontGlyph;
   glyphCount: word;
 begin
   assign(f, filename);
@@ -198,8 +199,38 @@ begin
       end;
 
     end else if startsWith(txtLine, 'char') and not startsWith(txtLine, 'chars') then begin
-      { TODO: Load the glyphs }
+      while contains(txtLine, '  ') do
+        txtLine := replaceAll(txtLine, '  ', ' ');
+
+      { Parse the whole nine first, then copy the record to the list of font glyphs }
+      split(txtLine, ' ', pairs);
+
+      for a:=0 to high(pairs) do begin
+        split(pairs[a], '=', pair);
+        k := pair[0]; v := pair[1];
+
+        { case-of can't be used with strings in Mode TP }
+        if k = 'id' then
+          tempGlyph.id := parseInt(v)
+        else if k = 'x' then
+          tempGlyph.x := parseInt(v)
+        else if k = 'y' then
+          tempGlyph.y := parseInt(v)
+        else if k = 'width' then
+          tempGlyph.width := parseInt(v)
+        else if k = 'height' then
+          tempGlyph.height := parseInt(v)
+        else if k = 'xoffset' then
+          tempGlyph.xoffset := parseInt(v)
+        else if k = 'yoffset' then
+          tempGlyph.yoffset := parseInt(v)
+        else if k = 'xadvance' then
+          tempGlyph.xadvance := parseInt(v);
+      end;
+
       { array of glyphs starts from 0, ends at 94 }
+
+      { TODO: Copy to the array of glyphs }
     end;
   end;
 
