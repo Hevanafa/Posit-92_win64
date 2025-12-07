@@ -1,2 +1,7 @@
-# TODO: Test if there's the .exe
-.\start_server.ps1
+$outputFile = ".\game.exe"
+
+if (test-path -path $outputFile -pathType leaf) {
+  & (.\game.exe)
+} else {
+  write-host "Couldn't find $outputFile"
+}
