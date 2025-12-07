@@ -22,6 +22,8 @@ var
 
 begin
   game.init;
+  game.draw;
   { TODO: Add the rest of the method calls }
-  readln
+  readln;
+  game.cleanup;
 end.
