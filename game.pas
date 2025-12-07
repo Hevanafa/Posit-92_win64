@@ -4,7 +4,7 @@
 
 uses
   SDL2Wrapper, Posit92,
-  Keyboard, VGA;
+  Keyboard, Logger, VGA;
 
 const
   TargetFPS = 60;
@@ -38,6 +38,7 @@ begin
 
   setTitle('Posit-92 with SDL2');
 
+  initLogger;
   initBuffer;
   { initDeltaTime }
 end;
@@ -53,6 +54,7 @@ procedure TGame.cleanup;
 begin
   inherited cleanup;
 
+  closeLogger;
   { Your cleanup code here (after setting `done` to true) }
 end;
 
