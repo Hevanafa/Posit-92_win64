@@ -27,13 +27,17 @@ end;
 procedure TGame.init;
 begin
   inherited init;
+  setTitle('Posit-92 with SDL2')
 
-  initBuffer;
+  { initBuffer; }
 end;
 
 procedure TGame.afterInit;
 begin
-  loadAssets
+  loadAssets;
+
+  { Init your game state here }
+  done := false
 end;
 
 procedure TGame.cleanup;
@@ -56,7 +60,6 @@ end;
 
 var
   game: TGame;
-  done: boolean;
 
 begin
   game.init;

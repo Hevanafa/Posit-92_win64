@@ -10,6 +10,7 @@ type
   TPosit92 = object
   public
     procedure init;
+    procedure setTitle(const value: string);
     procedure cleanup;
     procedure flush;
   private
@@ -21,8 +22,6 @@ type
 implementation
 
 procedure TPosit92.init;
-const
-  title = 'Posit-92 with SDL2';
 begin
   if SDL_Init(SDL_INIT_VIDEO) <> 0 then begin
     writeln('SDL_Init failed!');
@@ -30,7 +29,7 @@ begin
   end;
 
   window := SDL_CreateWindow(
-    title,
+    'SDL2 Window',
     SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
     640, 400,
     SDL_WINDOW_SHOWN);
@@ -38,6 +37,11 @@ begin
   renderer := SDL_CreateRenderer(window, -1, 0);
 
   writeln('Hello from TPosit92.init!')
+end;
+
+procedure TPosit92.setTitle(const value: string);
+begin
+  SDL_SetWindowTitle(window, @value[1])
 end;
 
 procedure TPosit92.cleanup;

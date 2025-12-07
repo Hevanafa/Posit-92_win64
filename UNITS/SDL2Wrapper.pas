@@ -20,6 +20,7 @@ type
 function SDL_Init(flags: longword): longint; cdecl; external 'SDL2.dll';
 function SDL_CreateWindow(title: PChar; x, y, w, h: longint; flags: longword): PSDL_Window; cdecl; external 'SDL2.dll';
 function SDL_CreateRenderer(window: PSDL_Window; index: longint; flags: longword): PSDL_Renderer; cdecl; external 'SDL2.dll';
+procedure SDL_SetWindowTitle(window: PSDL_Window; title: PChar); cdecl; external 'SDL2.dll';
 procedure SDL_DestroyRenderer(renderer: PSDL_Renderer); cdecl; external 'SDL2.dll';
 procedure SDL_DestroyWindow(window: PSDL_Window); cdecl; external 'SDL2.dll';
 procedure SDL_Quit; cdecl; external 'SDL2.dll';
