@@ -81,6 +81,8 @@ begin
   { Your render logic here }
   spr(imgGasolineMaid, 10, 10);
 
+  printBMFont('Hello from Posit-92 with SDL2!', 10, 160, defaultFont, defaultFontGlyphs);
+
   flush
 end;
 

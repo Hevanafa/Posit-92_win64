@@ -240,9 +240,9 @@ begin
 
   close(f);
 
-  writeLog('Loaded ' + i32str(glyphCount) + ' glyphs')
+  writeLog('Loaded ' + i32str(glyphCount) + ' glyphs');
 
-  { TODO: Load the imgHandle }
+  font.imgHandle := loadImage(font.filename);
 end;
 
 procedure TPosit92.flush;
