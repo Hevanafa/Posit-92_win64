@@ -72,6 +72,8 @@ procedure SDL_Quit; cdecl; external 'SDL2.dll';
 
 procedure SDL_Delay(ms: longword); cdecl; external 'SDL2.dll';
 function SDL_GetTicks: longword; cdecl; external 'SDL2.dll';
+function SDL_GetPerformanceCounter: int64; cdecl; external 'SDL2.dll';
+function SDL_GetPerformanceFrequency: int64; cdecl; external 'SDL2.dll';
 
 procedure SDL_SetRenderDrawColor(renderer: PSDL_Renderer; r, g, b, a: byte); cdecl; external 'SDL2.dll';
 procedure SDL_RenderClear(renderer: PSDL_Renderer); cdecl; external 'SDL2.dll';
