@@ -10,10 +10,8 @@ type
   TPosit92 = object
   public
     procedure init;
-    { procedure afterInit; }
     procedure cleanup;
-    { procedure update; }
-    procedure draw;
+    procedure flush;
   private
     window: PSDL_Window;
     renderer: PSDL_Renderer;
@@ -53,9 +51,10 @@ begin
 end;
 
 
-procedure TPosit92.draw;
+procedure TPosit92.flush;
 begin
   SDL_SetRenderDrawColor(renderer, $64, $95, $ED, $FF);
+
   SDL_RenderClear(renderer);
   SDL_RenderPresent(renderer)
 end;

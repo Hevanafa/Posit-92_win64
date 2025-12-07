@@ -32,7 +32,7 @@ procedure SDL_RenderPresent(renderer: PSDL_Renderer); cdecl; external 'SDL2.dll'
 function SDL_CreateTexture(renderer: PSDL_Renderer; format: longword; access, w, h: longint): PSDL_Texture; cdecl; external 'SDL2.dll';
 function SDL_UpdateTexture(texture: PSDL_Texture; rect, pixels: pointer; pitch: longint): longint; cdecl; external 'SDL2.dll';
 function SDL_RenderCopy(renderer: PSDL_Renderer; texture: PSDL_Texture; srcrect, dstrect: pointer): longint; cdecl; external 'SDL2.dll';
-function SDL_DestroyTexture(texture: PSDL_Texture); cdecl; external 'SDL2.dll';
+procedure SDL_DestroyTexture(texture: PSDL_Texture); cdecl; external 'SDL2.dll';
 
 
 implementation
