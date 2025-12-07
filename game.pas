@@ -4,7 +4,7 @@
 
 uses
   SDL2Wrapper, Posit92,
-  Keyboard, Logger, VGA;
+  Keyboard, Logger, Panic, VGA;
 
 const
   TargetFPS = 60;
@@ -46,6 +46,8 @@ end;
 procedure TGame.afterInit;
 begin
   loadAssets;
+
+  panicHalt('Test panic call');
 
   { Init your game state here }
 end;
