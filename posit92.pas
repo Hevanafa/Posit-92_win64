@@ -17,6 +17,8 @@ type
 
     procedure update;
     procedure flush;
+  protected
+    done: boolean;
   private
     window: PSDL_Window;
     renderer: PSDL_Renderer;
@@ -47,7 +49,9 @@ begin
   vgaTexture := SDL_CreateTexture(
     renderer,
     SDL_PIXELFORMAT_BGRA32, SDL_TEXTUREACCESS_STREAMING,
-    vgaWidth, vgaHeight)
+    vgaWidth, vgaHeight);
+
+  done := false
 end;
 
 procedure TPosit92.setTitle(const value: string);
@@ -58,9 +62,14 @@ end;
 procedure TPosit92.update;
 var
   event: TSDL_Event;
+  keyEvent: PSDL_KeyboardEvent;
+  dosScancode: integer;
 begin
+  { TODO: Handle SDL to DOS translation }
   while SDL_PollEvent(@event) <> 0 do begin
-    if event.eventType = SDL_QUIT_ then done := true;
+    case event.eventType of 
+      SDL_QUIT_: done := true;
+    end;
   end;
 end;
 
@@ -78,11 +87,6 @@ end;
 function TPosit92.isKeyDown(const scancode: integer): boolean;
 begin
   isKeyDown := keyState[scancode]
-end;
-
-procedure TPosit92.update;
-begin
-  { TODO: Handle SDL to DOS translation }
 end;
 
 procedure TPosit92.flush;

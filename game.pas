@@ -3,14 +3,17 @@
 {$Mode TP}
 
 uses
-  Posit92, VGA;
+  SDL2Wrapper, Posit92,
+  VGA;
 
 const
   TargetFPS = 60;
   FrameTime = 16;
 
+{
 var
   done: boolean;
+}
 
 type
   TGame = object(TPosit92)
@@ -77,9 +80,11 @@ begin
   game.init;
   game.afterInit;
 
-  done := false;
+  game.done := false;
 
-  while not done do begin
+  lastFrameTime := SDL_GetTicks;
+
+  while not game.done do begin
     frameTimeNow := SDL_GetTicks;
     elapsed := frameTimeNow - lastFrameTime;
 

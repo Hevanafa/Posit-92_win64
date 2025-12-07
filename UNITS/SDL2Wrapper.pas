@@ -15,11 +15,6 @@ const
 
   SDL_QUIT_ = $100;
 
-  SDLToDOSScancodes: array[0..511] of integer = (
-    0, 0, 0, 0,
-    SC_A  { SCL_SCANCODE_A = 4 }
-  );
-
 type
   PSDL_Window = pointer;
   PSDL_Renderer = pointer;
