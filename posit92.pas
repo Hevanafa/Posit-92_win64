@@ -80,6 +80,10 @@ begin
   isKeyDown := keyState[scancode]
 end;
 
+procedure TPosit92.update;
+begin
+  { TODO: Handle SDL to DOS translation }
+end;
 
 procedure TPosit92.flush;
 begin
