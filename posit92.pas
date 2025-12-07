@@ -176,18 +176,36 @@ begin
       end;
 
       writeLog('font.face:' + font.face)
+
+    end else if startsWith(txtLine, 'common') then begin
+      split(txtLine, ' ', pairs);
+
+      for a:=0 to high(pairs) do begin
+        split(pairs[a], '=', pair);
+        k := pair[0]; v := pair[1];
+        if k = 'lineHeight' then
+          font.lineHeight := parseInt(v);
+      end;
+    
+    end else if startsWith(txtLine, 'page') then begin
+      split(txtLine, ' ', pairs);
+
+      for a:=0 to high(pairs) do begin
+        split(pairs[a], '=', pair);
+        k := pair[0]; v := pair[1];
+        if k = 'file' then
+          font.filename := replaceAll(v, '"', '');
+      end;
+
+    end else if startsWith(txtLine, 'char') and not startsWith(txtLine, 'chars') then begin
+      { TODO: Load the glyphs }
+      { array of glyphs starts from 0, ends at 94 }
     end;
-
-  { TODO: Read the header }
-  { TODO: Load the glyphs }
-
   end;
 
-  { writeLog('filename: ' + filename);
-  writeLog('low: ' + i32str(low(fontGlyphs)));
-  writeLog('high: ' + i32str(high(fontGlyphs))); }
-
   close(f);
+
+  { TODO: Load the imgHandle }
   { writeLog('Loaded ' + i32str(count) + ' glyphs') }
 end;
 
