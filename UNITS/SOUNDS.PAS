@@ -86,4 +86,20 @@ begin
   sounds[key].chunk := chunk
 end;
 
+procedure playSound(const key: longint);
+var
+  sdlVolume: integer;
+begin
+  if not soundsInitialised then exit;
+  if (key < 0) or (key > high(sounds)) then exit;
+  if sounds[key].chunk = nil then exit;
+
+  sdlVolume := round(sounds[key].volume * 128);
+  Mix_VolumeChunk(sounds[key].chunk, sdlVolume);
+
+  { -1: any available channel
+    0: no looping }
+  Mix_PlayChannel(-1, sounds[key].chunk, 0)
+end;
+
 end.
