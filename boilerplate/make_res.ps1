@@ -17,4 +17,5 @@ if (!(test-path $iconame)) {
   exit
 }
 
-& ($windresPath $rcname -O coff -o $resname)
+$arguments = ($rcname, "-O", "coff", "-o", $resname)
+& $windresPath $arguments
