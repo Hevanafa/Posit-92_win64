@@ -3,6 +3,8 @@
 *.a
 *.o
 *.ppu
+# .rc to .res
+*.res
 dist/
 
 # Runtime stuff

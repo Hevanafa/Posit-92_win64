@@ -11,5 +11,6 @@ if (!(test-path $rcname)) {
   exit
 }
 
-$arguments = ($rcname, "-O", "coff", "-o", $resname)
+# use `cat` instead of `type` for Linux systems
+$arguments = ($rcname, "--preprocessor=type", "-O", "coff", "-o", $resname)
 & $windresPath $arguments
