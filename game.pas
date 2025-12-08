@@ -4,7 +4,7 @@
 
 uses
   SDL2Wrapper, Posit92,
-  Conv, Keyboard, Logger,
+  Conv, FPS, Keyboard, Logger,
   ImgRef, ImgRefFast,
   Timing, VGA,
   Assets;
@@ -26,6 +26,12 @@ type
     procedure draw;
   end;
 
+procedure drawFPS;
+begin
+  printDefault('FPS:' + i32str(getLastFPS), 240, 0);
+end;
+
+
 procedure TGame.loadAssets;
 begin
   { Load more assets here }
@@ -44,7 +50,8 @@ begin
 
   initLogger;
   initBuffer;
-  initDeltaTime
+  initDeltaTime;
+  initFPSCounter;
 end;
 
 procedure TGame.afterInit;
@@ -69,6 +76,7 @@ procedure TGame.update;
 begin
   inherited update;
   updateDeltaTime;
+  incrementFPS;
 
   { updateMouse }
 
@@ -88,6 +96,8 @@ begin
 
   printDefault('getTimer: ' + f32str(getTimer), 10, 170);
   printDefault('getFullTimer: ' + f32str(getFullTimer), 10, 180);
+
+  drawFPS;
 
   flush
 end;
