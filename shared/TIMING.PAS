@@ -24,13 +24,14 @@ procedure updateDeltaTime;
 implementation
 
 {$ifdef WIN64}
-uses SDL2Wrapper, Windows;
+uses SDL2Wrapper, SysUtils;
 
-type
+{ type
   TDateTime = record
     year, month, day: word;
     hour, minute, second, msec: word;
   end;
+}
 {$endif}
 
 procedure initDeltaTime;
@@ -54,16 +55,14 @@ var
   perfFrequency: int64;
   startCounter: int64;
   midnightOffset: double;
+  epochStart: TDateTime;
 
 procedure initTiming;
-var
-  h, m, s, ms: word;
 begin
   perfFrequency := SDL_GetPerformanceFrequency;
   startCounter := SDL_GetPerformanceCounter;
 
-  getTime(h, m, s, ms);
-  midnightOffset := h * 3600.0 + m * 60.0 + s + ms / 1000.0;
+  epochStart := EncodeDate(1970, 1, 1);
 
   timingInitialised := true
 end;
@@ -78,11 +77,15 @@ begin
   getTimer := (now - startCounter) / perfFrequency
 end;
 
+{ Return the time in seconds since epoch }
 function getFullTimer: double;
+var
+  secondsSinceEpoch: double;
 begin
-  { TODO: Return the time in seconds since epoch }
   if not timingInitialised then initTiming;
-  getFullTimer := SDL_GetPerformanceCounter / perfFrequency
+
+  secondsSinceEpoch := (now - epochStart) * 86400.0;
+  getFullTimer := secondsSinceEpoch
 end;
 {$endif}
 
