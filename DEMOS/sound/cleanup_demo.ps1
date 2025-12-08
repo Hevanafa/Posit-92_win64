@@ -14,5 +14,6 @@ if ($files.count -eq 0) {
   write-host "Deleted $($files.count) file(s)" -foregroundColor cyan
 }
 
-cd ..\..\experimental
+push-location ..\..\experimental
 & .\cleanup.ps1
+pop-location
