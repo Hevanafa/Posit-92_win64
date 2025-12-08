@@ -81,6 +81,7 @@ begin
     case event.eventType of 
       SDL_QUIT_: done := true;
 
+      { Keyboard }
       SDL_KEYDOWN: begin
         keyEvent := PSDL_KeyboardEvent(@event);
         if keyEvent^.repeat_ = 0 then begin
@@ -97,6 +98,27 @@ begin
 
         if dosScancode <> 0 then
           keyState[dosScancode] := false;
+      end;
+
+      { Mouse }
+      SDL_MOUSEMOTION: begin
+        mouseEvent := PSDL_MouseMotionEvent(@event);
+        mouseX := mouseEvent^.x;
+        mouseY := mouseEvent^.y;
+      end;
+
+      SDL_MOUSEBUTTONDOWN: begin
+        buttonEvent := PSDL_MouseButtonEvent(@event);
+        if buttonEvent^.button = SDL_BUTTON_LEFT then
+          mouseButton := mouseButton or 1;
+      end;
+
+      SDL_MOUSEBUTTONUP: begin
+        buttonEvent := PSDL_MouseButtonEvent(@event);
+        if buttonEvent^.button = SDL_BUTTON_LEFT then
+          mouseButton := mouseButton xor 1;
+      end;
+
       end;
     end;
   end;
