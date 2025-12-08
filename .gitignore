@@ -19,5 +19,10 @@ boilerplate/UNITS/
 boilerplate/posit92.pas
 boilerplate/posit-92.ico
 
+# Demo projects
+DEMOS/sound/*.dll
+# DEMOS/sound/*.ps1
+
+
 # Misc
 thumbs.db
