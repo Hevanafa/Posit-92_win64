@@ -1,13 +1,18 @@
 # Compiled stuff
 *.exe
+*.a
 *.o
 *.ppu
 dist/
-UNITS/*.a
 
 # Runtime stuff
 *.log
 LOG.TXT
+
+# Boilerplate
+boilerplate/shared/*.PAS
+boilerplate/UNITS/*.PAS
+boilerplate/posit92.pas
 
 # Misc
 thumbs.db
