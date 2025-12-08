@@ -8,6 +8,7 @@ uses BMFont;
 
 var
   imgGasolineMaid: longint;
+  imgXPCursor: longint;
 
   defaultFont: TBMFont;
   defaultFontGlyphs: array [32..126] of TBMFontGlyph;

@@ -33,6 +33,11 @@ begin
   printDefault('FPS:' + i32str(getLastFPS), 240, 0);
 end;
 
+procedure drawMouse;
+begin
+  spr(imgXPCursor, mouseX, mouseY)
+end;
+
 procedure debugMouse;
 begin
   printDefault('Mouse: {x:' + i32str(mouseX) + ', y:' + i32str(mouseY) + '}', 0, 0);
@@ -44,6 +49,7 @@ procedure TGame.loadAssets;
 begin
   { Load more assets here }
   imgGasolineMaid := loadImage('assets\images\gasoline_maid_100px.png');
+  imgXPCursor := loadImage('assets\images\cursor.png');
 
   loadBMFont(
     'assets\fonts\nokia_cellphone_fc_8.txt',
@@ -106,6 +112,7 @@ begin
   printDefault('getFullTimer: ' + f32str(getFullTimer), 10, 180);
 
   debugMouse;
+  drawMouse;
   drawFPS;
 
   flush
