@@ -109,8 +109,9 @@ begin
   { Your render logic here }
   spr(imgGasolineMaid, 10, 10);
 
-  printDefault('Hello from Posit-92 with SDL2!', 10, 160);
+  printDefault('Hello from Posit-92 with SDL2!', 10, 100);
 
+  printDefault('midnight offset: ' + f32str(getMidnightOffset), 10, 160);
   printDefault('getTimer: ' + f32str(getTimer), 10, 170);
   printDefault('getFullTimer: ' + f32str(getFullTimer), 10, 180);
 
