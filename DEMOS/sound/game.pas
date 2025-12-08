@@ -14,8 +14,11 @@ const
   FrameTime = 16;
 
 var
+  lastSpacebar: boolean;
+  lastD1, lastD2, lastD3, lastD4, lastD5: boolean;
+
+  { Init your game state here }
   gameTime: double;
-  { More of your game state here }
 
 
 type
@@ -35,6 +38,11 @@ begin
   spr(imgCursor, mouseX, mouseY)
 end;
 
+procedure playRandomSFX;
+begin
+  playSound(1 + random(SfxSlip))
+end;
+
 
 procedure TGame.loadAssets;
 begin
@@ -44,7 +52,13 @@ begin
 
   loadBMFont(
     'assets\fonts\nokia_cellphone_fc_8.txt',
-    defaultFont, defaultFontGlyphs)
+    defaultFont, defaultFontGlyphs);
+
+  loadSound(SfxBwonk, 'assets\sfx\bwonk.ogg');
+  loadSound(SfxBite, 'assets\sfx\bite.ogg');
+  loadSound(SfxBonk, 'assets\sfx\bonk.ogg');
+  loadSound(SfxStrum, 'assets\sfx\strum.ogg');
+  loadSound(SfxSlip, 'assets\sfx\slip.ogg');
 
   { Load more assets here }
 end;
@@ -72,13 +86,13 @@ end;
 
 procedure TGame.cleanup;
 begin
-  closeLogger;
-  showCursor;
   cleanupSounds;
+  showCursor;
 
   { Your cleanup code here (after setting `done` to true) }
 
   inherited cleanup;
+  closeLogger;
 end;
 
 procedure TGame.update;
@@ -88,6 +102,37 @@ begin
 
   { Your update logic here }
   if isKeyDown(SC_ESC) then done := true;
+
+  if lastSpacebar <> isKeyDown(SC_SPACE) then begin
+    lastSpacebar := isKeyDown(SC_SPACE);
+
+    if lastSpacebar then playRandomSFX;
+  end;
+
+  if lastD1 <> isKeyDown(SC_1) then begin
+    lastD1 := isKeyDown(SC_1);
+    if lastD1 then playSound(1);
+  end;
+
+  if lastD2 <> isKeyDown(SC_2) then begin
+    lastD2 := isKeyDown(SC_2);
+    if lastD2 then playSound(2);
+  end;
+
+  if lastD3 <> isKeyDown(SC_3) then begin
+    lastD3 := isKeyDown(SC_3);
+    if lastD3 then playSound(3);
+  end;
+
+  if lastD4 <> isKeyDown(SC_4) then begin
+    lastD4 := isKeyDown(SC_4);
+    if lastD4 then playSound(4);
+  end;
+
+  if lastD5 <> isKeyDown(SC_5) then begin
+    lastD5 := isKeyDown(SC_5);
+    if lastD5 then playSound(5);
+  end;
 
   gameTime := gameTime + dt
 end;

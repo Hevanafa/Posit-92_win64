@@ -33,6 +33,7 @@ var
   a: longint;
 begin
   soundsInitialised := false;
+  writeLog('initSounds begin');
 
   if Mix_OpenAudio(MIX_DEFAULT_FREQUENCY,
     MIX_DEFAULT_FORMAT,
@@ -47,6 +48,7 @@ begin
     soundList[a].volume := 1.0
   end;
 
+  writeLog('initSounds end');
   soundsInitialised := true
 end;
 
@@ -69,6 +71,10 @@ var
   chunk: PMix_Chunk;
 begin
   if not soundsInitialised then exit;
+
+  writeLog('loadSound:');
+  writeLogI32(key);
+  writeLog(filename);
 
   if (key < 0) or (key > high(soundList)) then begin
     writeLog('loadSound: Invalid sound key ' + i32str(key));
