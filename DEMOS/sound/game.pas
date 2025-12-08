@@ -54,10 +54,12 @@ begin
     'assets\fonts\nokia_cellphone_fc_8.txt',
     defaultFont, defaultFontGlyphs);
 
+  {
   loadSound(SfxBwonk, 'assets\sfx\bwonk.ogg');
   loadSound(SfxBite, 'assets\sfx\bite.ogg');
   loadSound(SfxBonk, 'assets\sfx\bonk.ogg');
   loadSound(SfxStrum, 'assets\sfx\strum.ogg');
+  }
   { loadSound(SfxSlip, 'assets\sfx\slip.ogg'); }
 
   { Load more assets here }
@@ -143,6 +145,8 @@ var
   w: word;
 begin
   cls($FF6495ED);
+
+  spr(defaultFont.imgHandle, 10, 10);
 
   if (trunc(gameTime * 4) and 1) > 0 then
     spr(imgDosuEXE[1], 148, 88)
