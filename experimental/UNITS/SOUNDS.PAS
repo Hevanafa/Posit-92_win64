@@ -82,9 +82,11 @@ var
   strBuffer: array[0..255] of char;
   chunk: PMix_Chunk;
 begin
+{
   writeLog('loadSound:');
   writeLogI32(key);
   writeLog(filename);
+}
 
   if not soundsInitialised then exit;
 

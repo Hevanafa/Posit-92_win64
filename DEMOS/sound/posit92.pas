@@ -160,37 +160,22 @@ end;
 
 function TPosit92.loadImage(const filename: string): longint;
 var
-  strBuffer: PChar; { array[0..255] of char; }
-  bufferSize: word;
-
+  strBuffer: array[0..255] of char;
   surface: PSDL_Surface;
   imgHandle: longint;
   image: PImageRef;
   src, dest: PByte;
-  a: longint;
 begin
-  writeLog('loadImage ' + filename);
+  { writeLog('loadImage ' + filename); }
 
-  bufferSize := length(filename) + 1;
-  getmem(strBuffer, bufferSize);
   strpcopy(strBuffer, filename);
-
-  writeln(strBuffer);
   surface := IMG_Load(strBuffer);
-
-  freemem(strBuffer, bufferSize);
-  strBuffer := nil;
 
   if surface = nil then begin
     writeLog('loadImage: Failed to load ' + filename);
     loadImage := -1;
     exit
   end;
-
-{
-  writeLog(filename + ' BPP: ');
-  writeLogI32(surface^.format^.BitsPerPixel);
-}
 
   if surface^.format^.BitsPerPixel <> 32 then begin
     writeWarn('loadImage: Warning: ' + filename + ' is not 32 BPP!');
