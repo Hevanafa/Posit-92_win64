@@ -16,6 +16,8 @@ LOG.TXT
 # Boilerplate
 boilerplate/shared/
 boilerplate/UNITS/
+boilerplate/*.ps1
+!boilerplate/setup.ps1
 boilerplate/posit92.pas
 boilerplate/posit-92.ico
 
