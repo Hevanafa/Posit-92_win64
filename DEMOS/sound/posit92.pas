@@ -187,9 +187,14 @@ begin
     exit
   end;
 
-  if surface^.format^.BitsPerPixel <> 24 then begin
-    writeLog('loadImage: Warning: ' + filename + ' is not 24 BPP!');
-    writeLog('loadImage: Convert it to 24 BPP then reload');
+{
+  writeLog(filename + ' BPP: ');
+  writeLogI32(surface^.format^.BitsPerPixel);
+}
+
+  if surface^.format^.BitsPerPixel <> 32 then begin
+    writeWarn('loadImage: Warning: ' + filename + ' is not 32 BPP!');
+    writeLog('loadImage: Convert it to 32 BPP then reload');
     SDL_FreeSurface(surface);
     loadImage := -1;
     exit

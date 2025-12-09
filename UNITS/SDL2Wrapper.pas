@@ -64,14 +64,6 @@ type
     keysym: TSDL_Keysym;
   end;
 
-  PSDL_PixelFormat = ^TSDL_PixelFormat;
-  TSDL_PixelFormat = record
-    format: longword;
-    palette: pointer; { PSDL_Palette }
-    BitsPerPixel: byte;
-    unused: array[0..52] of byte;
-  end;
-
   PSDL_Surface = ^TSDL_Surface;
   TSDL_Surface = record
     flags: longword;
