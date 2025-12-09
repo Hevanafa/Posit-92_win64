@@ -187,6 +187,14 @@ begin
     exit
   end;
 
+  if surface^.format^.BitsPerPixel <> 24 then begin
+    writeLog('loadImage: Warning: ' + filename + ' is not 24 BPP!');
+    writeLog('loadImage: Convert it to 24 BPP then reload');
+    SDL_FreeSurface(surface);
+    loadImage := -1;
+    exit
+  end;
+
   imgHandle := newImage(surface^.w, surface^.h);
   image := getImagePtr(imgHandle);
 

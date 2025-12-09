@@ -51,17 +51,15 @@ begin
   imgDosuEXE[1] := loadImage('assets\images\dosu_2.png');
   imgFullFont := loadImage('assets\fonts\nokia_cellphone_fc_8_0.png');
 
-  { loadBMFont(
+  loadBMFont(
     'assets\fonts\nokia_cellphone_fc_8.txt',
-    defaultFont, defaultFontGlyphs); }
+    defaultFont, defaultFontGlyphs);
 
-  {
   loadSound(SfxBwonk, 'assets\sfx\bwonk.ogg');
   loadSound(SfxBite, 'assets\sfx\bite.ogg');
   loadSound(SfxBonk, 'assets\sfx\bonk.ogg');
   loadSound(SfxStrum, 'assets\sfx\strum.ogg');
-  }
-  { loadSound(SfxSlip, 'assets\sfx\slip.ogg'); }
+  loadSound(SfxSlip, 'assets\sfx\slip.ogg');
 
   { Load more assets here }
 end;
@@ -147,19 +145,18 @@ var
 begin
   cls($FF6495ED);
 
-  for w:=1 to 10 do
-    spr(imgFullFont, 10, 10 * w);
-
-  { spr(defaultFont.imgHandle, 10, 10); }
-
   if (trunc(gameTime * 4) and 1) > 0 then
     spr(imgDosuEXE[1], 148, 88)
   else
     spr(imgDosuEXE[0], 148, 88);
 
-  s := 'Hello world!';
+  s := '1, 2, 3, 4, 5 - Play sound';
   w := measureDefault(s);
   printDefault(s, (vgaWidth - w) div 2, 120);
+
+  s := 'Spacebar - Play a random sound';
+  w := measureDefault(s);
+  printDefault(s, (vgaWidth - w) div 2, 130);
 
   drawMouse;
   vgaFlush
