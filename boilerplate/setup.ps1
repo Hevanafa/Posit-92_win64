@@ -26,7 +26,8 @@ foreach ($script in $scripts) {
 
 copy-item "$source\posit92.pas" ".\"
 
-copy-item "$source\*.rc" ".\"
+copy-item "$source\game.rc" ".\"
 copy-item "$source\posit-92.ico" ".\"
+copy-item "$source\game.manifest" ".\"
 
 write-host "Setup complete! Run .\build_run.ps1 to compile and test" -ForegroundColor green
