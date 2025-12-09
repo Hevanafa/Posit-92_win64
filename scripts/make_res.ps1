@@ -12,5 +12,6 @@ if (!(test-path $rcname)) {
 }
 
 # use `cat` instead of `type` for Linux systems
-$arguments = ($rcname, "--preprocessor=type", "-O", "coff", "-o", $resname)
+# E:\fpc-wasm\fpc\bin\x86_64-win64\windres.exe --preprocessor=type -O coff --input=game.rc --output=game.res
+$arguments = ("--preprocessor=type", "-O", "coff", "--input=$rcname", "--output=$resname")
 & $windresPath $arguments
