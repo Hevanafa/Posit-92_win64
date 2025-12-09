@@ -22,7 +22,9 @@ procedure setSoundVolume(const key: longint; const volume: single);
 
 implementation
 
-uses Conv, Maths, Logger;
+uses
+  SysUtils,
+  Conv, Maths, Logger;
 
 var
   soundsInitialised: boolean;
@@ -33,6 +35,7 @@ var
   a: longint;
 begin
   soundsInitialised := false;
+  writeLog('initSounds begin');
 
   if Mix_OpenAudio(MIX_DEFAULT_FREQUENCY,
     MIX_DEFAULT_FORMAT,
@@ -47,6 +50,7 @@ begin
     soundList[a].volume := 1.0
   end;
 
+  writeLog('initSounds end');
   soundsInitialised := true
 end;
 
@@ -64,10 +68,26 @@ begin
   soundsInitialised := false
 end;
 
+{
+procedure loadSound(const key: longint; const filename: string);
+begin
+  writeLog('loadSound:');
+  writeLogI32(key);
+  writeLog(filename);
+end;
+}
+
 procedure loadSound(const key: longint; const filename: string);
 var
+  strBuffer: array[0..255] of char;
   chunk: PMix_Chunk;
 begin
+{
+  writeLog('loadSound:');
+  writeLogI32(key);
+  writeLog(filename);
+}
+
   if not soundsInitialised then exit;
 
   if (key < 0) or (key > high(soundList)) then begin
@@ -75,7 +95,9 @@ begin
     exit
   end;
 
-  chunk := Mix_LoadWAV(@filename[1]);
+  strpcopy(strBuffer, filename);
+  chunk := Mix_LoadWAV(strBuffer);
+
   if chunk = nil then begin
     writeLog('loadSound: Failed to load ' + filename);
     exit
@@ -96,7 +118,10 @@ var
 begin
   if not soundsInitialised then exit;
   if (key < 0) or (key > high(soundList)) then exit;
-  if soundList[key].chunk = nil then exit;
+  if soundList[key].chunk = nil then begin
+    writeWarn('Warning: Attempting to play a nil sound');
+    exit
+  end;
 
   sdlVolume := round(soundList[key].volume * 128);
   Mix_VolumeChunk(soundList[key].chunk, sdlVolume);
