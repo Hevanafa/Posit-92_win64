@@ -147,7 +147,8 @@ var
 begin
   cls($FF6495ED);
 
-  spr(imgFullFont, 10, 10);
+  for w:=1 to 10 do
+    spr(imgFullFont, 10, 10 * w);
 
   { spr(defaultFont.imgHandle, 10, 10); }
 
